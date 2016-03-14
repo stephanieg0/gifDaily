@@ -1,6 +1,18 @@
 angular.module('starter.controllers', [])
 
-.controller('mainCtrl', function($scope) {})
+.controller('mainCtrl', function($scope, $http) {
+
+  $http({
+    method: 'GET',
+    url: 'https://gifdaily-server.herokuapp.com'
+  }).then(function successCallback(response){
+    console.log('response', response.data);
+    $scope.Data = response.data;
+  }, function errorCallback(error){
+    return error;
+  });
+
+})
 
 .controller('favoritesCtrl', function($scope, favorites) {
   // With the new view caching in Ionic, Controllers are only called
