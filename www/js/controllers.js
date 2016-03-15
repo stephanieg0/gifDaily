@@ -1,14 +1,17 @@
 angular.module('starter.controllers', [])
 
 .controller('mainCtrl', function($scope, $http) {
-
+  const today = new Date();
+  console.log(today);
   $http({
     method: 'GET',
     url: 'https://gifdaily-server.herokuapp.com'
-  }).then(function successCallback(response){
-    console.log('response', response.data.data[0].gif);
+  })
+  .then(function successCallback(response){
+    console.log('response', response.data.data);
 
-    $scope.Data = response.data.data[0].gif.embed_url;
+    $scope.giphys = response.data.data;
+
   }, function errorCallback(error){
     return error;
   });
