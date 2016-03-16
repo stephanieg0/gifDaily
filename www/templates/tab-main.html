@@ -11,7 +11,7 @@
     <ion-list>
       <ion-item ng-repeat="gif in giphys">
         <iframe ng-src="{{gif.embed_url}}"></iframe>
-        <button class="button icon ion-ios-heart" ng-click="saveFavorite(gif.id)"></button>
+        <button class="button icon ion-ios-heart" ng-click="saveFavorite(gif.id, gif.embed_url)"></button>
       </ion-item>
     </ion-list>
   </ion-content>

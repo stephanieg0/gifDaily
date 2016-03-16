@@ -21,8 +21,9 @@ angular.module('starter.controllers', [])
 
 
   //save to favorites
-  $scope.saveFavorite = function (gifId) {
+  $scope.saveFavorite = function (gifId, gifUrl) {
     console.log("id", gifId);
+    console.log("url", gifUrl);
   }
 
 })
