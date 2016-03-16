@@ -3,9 +3,12 @@ angular.module('starter.controllers', [])
 .controller('mainCtrl', function($scope, $http) {
   const today = new Date();
   console.log(today);
+
+  //call to my server
   $http({
     method: 'GET',
-    url: 'https://gifdaily-server.herokuapp.com'
+    url: 'http://localhost:3000'
+    //https://gifdaily-server.herokuapp.com
   })
   .then(function successCallback(response){
     console.log('response', response.data.data);
@@ -15,6 +18,12 @@ angular.module('starter.controllers', [])
   }, function errorCallback(error){
     return error;
   });
+
+
+  //save to favorites
+  $scope.saveFavorite = function (gifId) {
+    console.log("id", gifId);
+  }
 
 })
 

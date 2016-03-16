@@ -10,8 +10,9 @@
     </form>
     <ion-list>
       <ion-item ng-repeat="gif in giphys">
-        <iframe ng-src="{{gif.gif.embed_url}}"></iframe>
-      </ion-item
+        <iframe ng-src="{{gif.embed_url}}"></iframe>
+        <button class="button icon ion-ios-heart" ng-click="saveFavorite(gif.id)"></button>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>
