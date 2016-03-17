@@ -1,13 +1,5 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
-    <form>
-      <input type="checkbox" value="actions">actions
-      <input type="checkbox" value="animals">animals
-      <input type="checkbox" value="celebrities">celebrities
-      <input type="checkbox" value="food-&-drink">food & drink
-      <input type="checkbox" value="news-&-politics">news & politics
-      <input type="checkbox" value="science">science
-    </form>
     <ion-list>
       <ion-item ng-repeat="gif in giphys">
         <iframe ng-src="{{gif.embed_url}}"></iframe>

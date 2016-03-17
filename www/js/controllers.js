@@ -22,8 +22,16 @@ angular.module('starter.controllers', [])
 
   //save to favorites
   $scope.saveFavorite = function (gifId, gifUrl) {
-    console.log("id", gifId);
-    console.log("url", gifUrl);
+
+    var data = ">>>>>HELLO WORLD";
+
+    console.log(data);
+
+    $http.post('http://localhost:3000', data)
+            .success(function (data, status, headers) {
+            })
+            .error(function (data, status, header) {
+            });
   }
 
 })
