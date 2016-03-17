@@ -23,7 +23,7 @@ angular.module('starter.controllers', [])
   //save to favorites
   $scope.saveFavorite = function (gifId, gifUrl) {
 
-    var data = ">>>>>HELLO WORLD";
+    const data = {gifId: gifId, gifUrl: gifUrl};
 
     console.log(data);
 
