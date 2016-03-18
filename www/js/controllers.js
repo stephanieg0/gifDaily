@@ -36,7 +36,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('favoritesCtrl', function($scope, favorites) {
+.controller('favoritesCtrl', function($scope, $http) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -45,10 +45,28 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $scope.favorites = favorites.all();
-  $scope.remove = function(chat) {
-    favorites.remove(chat);
-  };
+  console.log('favorites controller is working');
+  //call to my server
+  $http({
+    method: 'GET',
+    url: 'http://localhost:3000/favorites'
+    //https://gifdaily-server.herokuapp.com
+  })
+  .then(function successCallback(response){
+    console.log('favorites', response.data);
+
+    $scope.favorites = response.data;
+
+  }, function errorCallback(error){
+    return error;
+  });
+
+
+
+  // $scope.favorites = favorites.all();
+  // $scope.remove = function(chat) {
+  //   favorites.remove(chat);
+  // };
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
