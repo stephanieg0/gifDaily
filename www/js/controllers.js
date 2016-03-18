@@ -32,7 +32,7 @@ angular.module('starter.controllers', [])
             })
             .error(function (data, status, header) {
             });
-  }
+  }//end of fn
 
 })
 
@@ -61,12 +61,17 @@ angular.module('starter.controllers', [])
     return error;
   });
 
+  $scope.deleteFavorite = function (gifId, gifUrl) {
 
+    const deteleData = {gifId: gifId, gifUrl: gifUrl};
+    console.log(deteleData);
 
-  // $scope.favorites = favorites.all();
-  // $scope.remove = function(chat) {
-  //   favorites.remove(chat);
-  // };
+    $http.delete('http://localhost:3000/favorites/' + gifId)
+        .success(function (data, status, headers) {
+        })
+        .error(function (data, status, header) {
+        });
+  }
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {

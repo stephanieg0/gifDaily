@@ -2,7 +2,8 @@
   <ion-content class="padding">
     <ion-list>
       <ion-item ng-repeat="favorite in favorites">
-        <iframe ng-src="{{favorite.Url}}"></iframe>
+        <iframe id="{{favorite.FavoriteId}}" ng-src="{{favorite.Url}}"></iframe>
+        <button class="button icon ion-close-circled" ng-click="deleteFavorite(favorite.FavoriteId, favorite.Url)"></button>
       </ion-item>
     </ion-list>
   </ion-content>
