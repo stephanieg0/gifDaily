@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('mainCtrl', function($scope, $http) {
+.controller('mainCtrl', function($scope, $http, $cordovaSocialSharing) {
   const today = new Date();
   console.log(today);
 
@@ -33,6 +33,7 @@ angular.module('starter.controllers', [])
             .error(function (data, status, header) {
             });
   }//end of fn
+
 
 })
 
