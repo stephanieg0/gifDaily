@@ -1,12 +1,10 @@
-<ion-view view-title="Dashboard">
+<ion-view view-title="Dashboard" cache-view="false">
   <ion-content class="padding">
     <ion-list>
       <ion-item ng-repeat="gif in giphys">
         <iframe ng-src="{{gif.embed_url}}"></iframe>
         <button class="button icon ion-ios-heart" ng-click="saveFavorite(gif.id, gif.embed_url)"></button>
-        <feature name="SocialSharing">
-          <param name="ios-package" value="SocialSharing" />
-        </feature>
+        <button ng-click="Share(gif.embed_url)">Share</button>
 
       </ion-item>
     </ion-list>

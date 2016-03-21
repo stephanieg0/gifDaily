@@ -7,11 +7,11 @@ angular.module('starter.controllers', [])
   //call to my server
   $http({
     method: 'GET',
-    url: 'http://localhost:3000'
+    url: 'https://gifdaily-server.herokuapp.com'
     //https://gifdaily-server.herokuapp.com
+    //dev> http://localhost:3000
   })
   .then(function successCallback(response){
-    console.log('response', response.data.data);
 
     $scope.giphys = response.data.data;
 
@@ -27,13 +27,23 @@ angular.module('starter.controllers', [])
 
     console.log(data);
 
-    $http.post('http://localhost:3000', data)
+    $http.post('https://gifdaily-server.herokuapp.com', data)
             .success(function (data, status, headers) {
             })
             .error(function (data, status, header) {
             });
   }//end of fn
 
+  $scope.Share = function (gifUrl) {
+
+    $cordovaSocialSharing
+    .shareViaFacebook(gifUrl)
+    .then(function(result) {
+      console.log('success');
+    }, function(err) {
+      // An error occurred. Show a message to the user
+    });
+  }
 
 })
 
@@ -43,8 +53,9 @@ angular.module('starter.controllers', [])
   //call to my server
   $http({
     method: 'GET',
-    url: 'http://localhost:3000/favorites'
+    url: 'https://gifdaily-server.herokuapp.com/favorites'
     //https://gifdaily-server.herokuapp.com
+    //dev> http://localhost:3000/favorites
   })
   .then(function successCallback(response){
     console.log('favorites', response.data);
@@ -60,7 +71,7 @@ angular.module('starter.controllers', [])
     const deteleData = {gifId: gifId, gifUrl: gifUrl};
     console.log(deteleData);
 
-    $http.delete('http://localhost:3000/favorites/' + gifId)
+    $http.delete('https://gifdaily-server.herokuapp.com/favorites/' + gifId)
         .success(function (data, status, headers) {
         })
         .error(function (data, status, header) {
