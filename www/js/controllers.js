@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
     //dev> http://localhost:3000
   })
   .then(function successCallback(response){
-
+    console.log(response.data.data);
     $scope.giphys = response.data.data;
 
   }, function errorCallback(error){
