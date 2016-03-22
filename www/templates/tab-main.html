@@ -2,7 +2,7 @@
   <ion-content class="padding" overflow-scroll="true">
     <ion-list>
       <ion-item ng-repeat="gif in giphys">
-        <iframe height="150" ng-src="{{gif.embed_url}}"></iframe>
+        <iframe ng-src="{{gif.embed_url}}"></iframe>
         <button class="button icon ion-ios-heart" ng-click="saveFavorite(gif.id, gif.embed_url)"></button>
         <button ng-click="Share(gif.images.original.url)">Share</button>
 

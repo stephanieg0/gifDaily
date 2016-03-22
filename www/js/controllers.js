@@ -1,51 +1,50 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic'])
 
 .controller('mainCtrl', function($scope, $http, $cordovaSocialSharing) {
-  const today = new Date();
-  console.log(today);
 
-  //call to my server
-  $http({
-    method: 'GET',
-    url: 'https://gifdaily-server.herokuapp.com'
-    //https://gifdaily-server.herokuapp.com
-    //dev> http://localhost:3000
-  })
-  .then(function successCallback(response){
-    console.log(response.data.data);
-    $scope.giphys = response.data.data;
+    //call to my server
+    $http({
+      method: 'GET',
+      url: 'https://gifdaily-server.herokuapp.com'
+      //https://gifdaily-server.herokuapp.com
+      //dev> http://localhost:3000
+    })
+    .then(function successCallback(response){
+      console.log(response.data.data);
+      $scope.giphys = response.data.data;
 
-  }, function errorCallback(error){
-    return error;
-  });
-
-
-  //save to favorites
-  $scope.saveFavorite = function (gifId, gifUrl) {
-
-    const data = {gifId: gifId, gifUrl: gifUrl};
-
-    console.log(data);
-
-    $http.post('https://gifdaily-server.herokuapp.com', data)
-            .success(function (data, status, headers) {
-            })
-            .error(function (data, status, header) {
-            });
-  }//end of fn
-
-  $scope.Share = function (gifUrl) {
-
-    $cordovaSocialSharing
-    .shareViaFacebook(null, null, gifUrl)
-    .then(function(result) {
-      console.log('success');
-    }, function(err) {
-      // An error occurred. Show a message to the user
+    }, function errorCallback(error){
+      return error;
     });
-  }
 
-})
+
+    //save to favorites
+    $scope.saveFavorite = function (gifId, gifUrl) {
+
+      const data = {gifId: gifId, gifUrl: gifUrl};
+
+      console.log(data);
+
+      $http.post('https://gifdaily-server.herokuapp.com', data)
+              .success(function (data, status, headers) {
+              })
+              .error(function (data, status, header) {
+              });
+    }//end of fn
+
+    $scope.Share = function (gifUrl) {
+
+      $cordovaSocialSharing
+      .shareViaFacebook(null, null, gifUrl)
+      .then(function(result) {
+        console.log('success');
+      }, function(err) {
+        // An error occurred. Show a message to the user
+      });
+    }
+
+
+})//end of controller
 
 .controller('favoritesCtrl', function($scope, $http) {
 
