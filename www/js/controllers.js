@@ -37,7 +37,7 @@ angular.module('starter.controllers', [])
   $scope.Share = function (gifUrl) {
 
     $cordovaSocialSharing
-    .shareViaFacebook(gifUrl)
+    .shareViaFacebook(null, null, gifUrl)
     .then(function(result) {
       console.log('success');
     }, function(err) {
