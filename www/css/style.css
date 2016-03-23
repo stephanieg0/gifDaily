@@ -1,1 +1,7 @@
 /* Empty. Add your own CSS if you like */
+.facebookShareButton {
+  background-color: #4A65A0;
+  color: white;
+  font-size: 25px;
+  display: block;
+}

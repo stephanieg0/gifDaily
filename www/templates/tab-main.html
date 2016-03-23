@@ -3,8 +3,8 @@
     <ion-list>
       <ion-item ng-repeat="gif in giphys">
         <iframe ng-src="{{gif.embed_url}}"></iframe>
-        <button class="button icon ion-ios-heart" ng-click="saveFavorite(gif.id, gif.embed_url)"></button>
-        <button ng-click="Share(gif.images.original.url)">Share</button>
+<!--         <button class="button icon ion-ios-heart" ng-click="saveFavorite(gif.id, gif.embed_url)"></button> -->
+        <button class="button facebookShareButton ion-social-facebook" ng-click="Share(gif.images.original.url)"></button>
 
       </ion-item>
     </ion-list>
