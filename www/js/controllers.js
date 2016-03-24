@@ -53,8 +53,6 @@ angular.module('starter.controllers', ['ionic'])
   $http({
     method: 'GET',
     url: 'https://gifdaily-server.herokuapp.com/favorites'
-    //https://gifdaily-server.herokuapp.com
-    //dev> http://localhost:3000/favorites
   })
   .then(function successCallback(response){
     console.log('favorites', response.data);
@@ -62,27 +60,63 @@ angular.module('starter.controllers', ['ionic'])
     $scope.favorites = response.data;
 
   }, function errorCallback(error){
+    alert("error");
     return error;
   });
 
   $scope.deleteFavorite = function (gifId, gifUrl) {
 
     const deteleData = {gifId: gifId, gifUrl: gifUrl};
-    console.log(deteleData);
 
     $http.delete('https://gifdaily-server.herokuapp.com/favorites/' + gifId)
         .success(function (data, status, headers) {
         })
         .error(function (data, status, header) {
+          alert("error");
         });
   }
-})
+})//end of controller
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
 
-.controller('LoginCtrl', function($scope) {
+.controller('LoginCtrl', function($scope, $http) {
+
+  $scope.SignUp = function () {
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+
+    var userData = {
+      email: email,
+      password: password
+    }
+    console.log(userData);
+
+    $http.post('http://localhost:3000/signUp', userData)
+              .success(function (userData, status, headers) {
+              })
+              .error(function (userData, status, header) {
+                alert("error");
+              });
+
+  }
+
+    $scope.Login = function () {
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+
+    var userData = {
+      email: email,
+      password: password
+    }
+    console.log(userData);
+
+    $http.post('http://localhost:3000/login', userData)
+              .success(function (userData, status, headers) {
+              })
+              .error(function (userData, status, header) {
+                alert("error");
+              });
+
+  }
 
 });
 
