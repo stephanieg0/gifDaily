@@ -60,7 +60,6 @@ angular.module('starter.controllers', ['ionic'])
     $scope.favorites = response.data;
 
   }, function errorCallback(error){
-    alert("error");
     return error;
   });
 
@@ -72,7 +71,6 @@ angular.module('starter.controllers', ['ionic'])
         .success(function (data, status, headers) {
         })
         .error(function (data, status, header) {
-          alert("error");
         });
   }
 })//end of controller
@@ -92,9 +90,10 @@ angular.module('starter.controllers', ['ionic'])
 
     $http.post('http://localhost:3000/signUp', userData)
               .success(function (userData, status, headers) {
+                console.log('success');
               })
               .error(function (userData, status, header) {
-                alert("error");
+                console.log('failed');
               });
 
   }
@@ -113,7 +112,6 @@ angular.module('starter.controllers', ['ionic'])
               .success(function (userData, status, headers) {
               })
               .error(function (userData, status, header) {
-                alert("error");
               });
 
   }
