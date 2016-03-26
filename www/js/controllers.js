@@ -1,7 +1,16 @@
 angular.module('starter.controllers', ['ionic'])
 
-.controller('mainCtrl', function($scope, $http, $cordovaSocialSharing, $rootScope, LoggedInFactory) {
+.controller('mainCtrl', function($scope, $http, $cordovaSocialSharing) {
+    //setting local storage to find user
+    $scope.user = JSON.parse(localStorage.getItem("user")) || {};
+    //simple authentication after loggin in.
+    if (!$scope.user.user) {
+      $scope.loggedin = true;
+    } else {
+      $scope.loggedin = false;
+    }
 
+    console.log(!$scope.user.user);
     //call to my server
     $http({
       method: 'GET',
@@ -27,8 +36,10 @@ angular.module('starter.controllers', ['ionic'])
 
       $http.post('http://localhost:3000', data)
               .success(function (data, status, headers) {
+                console.log(status);
               })
               .error(function (data, status, header) {
+                console.log(status);
               });
     }//end of fn
 
@@ -89,10 +100,16 @@ angular.module('starter.controllers', ['ionic'])
     console.log(userData);
 
     $http.post('http://localhost:3000/signUp', userData)
-              .success(function (userData, status, headers) {
+              .success(function (statusData, status, headers) {
+
+                $scope.user = {user: userData.email};
+
+                localStorage.setItem('user', JSON.stringify($scope.user));
+
                 $location.url('/tab/main');
               })
-              .error(function (userData, status, header) {
+              .error(function (statusData, status, header) {
+                localStorage.setItem('user', JSON.stringify({}));
                 console.log(status);
               });
 
@@ -109,16 +126,15 @@ angular.module('starter.controllers', ['ionic'])
 
     $http.post('http://localhost:3000/login', userData)
               .success(function (statusData, status, headers) {
+                $scope.user = {user: userData.email};
 
-                userEmailFactory.setUserEmail(userData.email);
+                localStorage.setItem('user', JSON.stringify($scope.user));
 
                 $location.url('/tab/main');
 
-                //display save to favorites button.
-                LoggedInFactory.setLoggedIn(false);
-
               })
               .error(function (statusData, status, header) {
+                localStorage.setItem('user', JSON.stringify({}));
                 console.log(status);
               });
 
