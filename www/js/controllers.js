@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ionic'])
 
-.controller('mainCtrl', function($scope, $http, $cordovaSocialSharing) {
+.controller('mainCtrl', function($scope, $http, $cordovaSocialSharing, $rootScope, LoggedInFactory) {
 
     //call to my server
     $http({
@@ -76,7 +76,7 @@ angular.module('starter.controllers', ['ionic'])
 })//end of controller
 
 
-.controller('LoginCtrl', function($scope, $http) {
+.controller('LoginCtrl', function($scope, $http, $location, LoggedInFactory, userEmailFactory) {
 
   $scope.SignUp = function () {
     var email = document.getElementById("email").value;
@@ -90,15 +90,15 @@ angular.module('starter.controllers', ['ionic'])
 
     $http.post('http://localhost:3000/signUp', userData)
               .success(function (userData, status, headers) {
-                console.log('success');
+                $location.url('/tab/main');
               })
               .error(function (userData, status, header) {
-                console.log('failed');
+                console.log(status);
               });
 
   }
 
-    $scope.Login = function () {
+  $scope.Login = function () {
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
 
@@ -106,12 +106,20 @@ angular.module('starter.controllers', ['ionic'])
       email: email,
       password: password
     }
-    console.log(userData);
 
     $http.post('http://localhost:3000/login', userData)
-              .success(function (userData, status, headers) {
+              .success(function (statusData, status, headers) {
+
+                userEmailFactory.setUserEmail(userData.email);
+
+                $location.url('/tab/main');
+
+                //display save to favorites button.
+                LoggedInFactory.setLoggedIn(false);
+
               })
-              .error(function (userData, status, header) {
+              .error(function (statusData, status, header) {
+                console.log(status);
               });
 
   }

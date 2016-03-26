@@ -5,3 +5,7 @@
   font-size: 25px;
   display: block;
 }
+
+.buttonHidden {
+  visibility: hidden;
+}
