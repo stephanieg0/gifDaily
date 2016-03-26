@@ -10,11 +10,10 @@ angular.module('starter.controllers', ['ionic'])
       $scope.loggedin = false;
     }
 
-    console.log(!$scope.user.user);
     //call to my server
     $http({
       method: 'GET',
-      url: 'http://localhost:3000'
+      url: 'https://gifdaily-server.herokuapp.com'
       //https://gifdaily-server.herokuapp.com
       //dev> http://localhost:3000
     })
@@ -34,7 +33,7 @@ angular.module('starter.controllers', ['ionic'])
 
       console.log(data);
 
-      $http.post('http://localhost:3000', data)
+      $http.post('https://gifdaily-server.herokuapp.com', data)
               .success(function (data, status, headers) {
                 console.log(status);
               })
@@ -63,7 +62,7 @@ angular.module('starter.controllers', ['ionic'])
   //call to my server
   $http({
     method: 'GET',
-    url: 'http://localhost:3000/favorites'
+    url: 'https://gifdaily-server.herokuapp.com/favorites'
   })
   .then(function successCallback(response){
     console.log('favorites', response.data);
@@ -78,7 +77,7 @@ angular.module('starter.controllers', ['ionic'])
 
     const deteleData = {gifId: gifId, gifUrl: gifUrl};
 
-    $http.delete('http://localhost:3000/favorites/' + gifId)
+    $http.delete('https://gifdaily-server.herokuapp.com/favorites/' + gifId)
         .success(function (data, status, headers) {
         })
         .error(function (data, status, header) {
@@ -87,7 +86,7 @@ angular.module('starter.controllers', ['ionic'])
 })//end of controller
 
 
-.controller('LoginCtrl', function($scope, $http, $location, LoggedInFactory, userEmailFactory) {
+.controller('LoginCtrl', function($scope, $http, $location) {
 
   $scope.SignUp = function () {
     var email = document.getElementById("email").value;
@@ -99,7 +98,7 @@ angular.module('starter.controllers', ['ionic'])
     }
     console.log(userData);
 
-    $http.post('http://localhost:3000/signUp', userData)
+    $http.post('https://gifdaily-server.herokuapp.com/signUp', userData)
               .success(function (statusData, status, headers) {
 
                 $scope.user = {user: userData.email};
@@ -124,7 +123,7 @@ angular.module('starter.controllers', ['ionic'])
       password: password
     }
 
-    $http.post('http://localhost:3000/login', userData)
+    $http.post('https://gifdaily-server.herokuapp.com/login', userData)
               .success(function (statusData, status, headers) {
                 $scope.user = {user: userData.email};
 

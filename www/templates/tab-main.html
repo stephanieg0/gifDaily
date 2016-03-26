@@ -4,7 +4,9 @@
       <ion-item ng-repeat="gif in giphys">
         <img height="200" ng-src="{{gif.images.original.url}}">
 <!--         <iframe ng-src="{{gif.embed_url}}"></iframe> -->
-        <button class="button icon ion-ios-heart" ng-class="{'buttonHidden': loggedin}" ng-click="saveFavorite(gif.id, gif.images.original.url)"></button>
+        <div ng-class="{'buttonHidden': loggedin}">
+          <button class="button icon ion-ios-heart"  ng-click="saveFavorite(gif.id, gif.images.original.url)"></button>
+        </div>
         <button class="button facebookShareButton ion-social-facebook" ng-click="Share(gif.images.original.url)"></button>
 
       </ion-item>
