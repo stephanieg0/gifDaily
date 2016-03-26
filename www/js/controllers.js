@@ -5,7 +5,7 @@ angular.module('starter.controllers', ['ionic'])
     //call to my server
     $http({
       method: 'GET',
-      url: 'https://gifdaily-server.herokuapp.com'
+      url: 'http://localhost:3000'
       //https://gifdaily-server.herokuapp.com
       //dev> http://localhost:3000
     })
@@ -25,7 +25,7 @@ angular.module('starter.controllers', ['ionic'])
 
       console.log(data);
 
-      $http.post('https://gifdaily-server.herokuapp.com', data)
+      $http.post('http://localhost:3000', data)
               .success(function (data, status, headers) {
               })
               .error(function (data, status, header) {
@@ -52,7 +52,7 @@ angular.module('starter.controllers', ['ionic'])
   //call to my server
   $http({
     method: 'GET',
-    url: 'https://gifdaily-server.herokuapp.com/favorites'
+    url: 'http://localhost:3000/favorites'
   })
   .then(function successCallback(response){
     console.log('favorites', response.data);
@@ -67,7 +67,7 @@ angular.module('starter.controllers', ['ionic'])
 
     const deteleData = {gifId: gifId, gifUrl: gifUrl};
 
-    $http.delete('https://gifdaily-server.herokuapp.com/favorites/' + gifId)
+    $http.delete('http://localhost:3000/favorites/' + gifId)
         .success(function (data, status, headers) {
         })
         .error(function (data, status, header) {
