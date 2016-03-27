@@ -1,11 +1,11 @@
 <ion-view view-title="Favorites" cache-view="false">
-  <ion-content class="padding">
+  <ion-content class="padding" overflow-scroll="true">
     <ion-list>
       <ion-item ng-repeat="favorite in favorites | filter: {UserId: user.UserId}">
         <div ng-model="favorites">
           <div id="{{favorite.UserId}}">
-          <img id="{{favorite.FavoriteId}}" height="200" ng-src="{{favorite.Url}}">
-          <button class="button icon ion-close-circled" ng-click="deleteFavorite(favorite.FavoriteId, favorite.Url)"></button>
+          <button class="button deleteFavoriteButton icon ion-close-circled" ng-click="deleteFavorite(favorite.FavoriteId, favorite.Url)"></button>
+          <img id="{{favorite.FavoriteId}}" class="gifs" height="200" ng-src="{{favorite.Url}}">
         </div>
         </div>
       </ion-item>

@@ -3,7 +3,7 @@
     <ion-list>
       <ion-item ng-repeat="gif in giphys">
         <img height="200" class="gifs" ng-src="{{gif.images.original.url}}">
-    <!--<iframe ng-src="{{gif.embed_url}}"></iframe> -->
+
         <div class="socialButtons">
           <button class="button facebookShareButton ion-social-facebook" ng-click="Share(gif.images.original.url)"></button>
           <button class="button smsShareButton ion-android-textsms" ng-click="ShareSMS(gif.images.original.url)"></button>
