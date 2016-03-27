@@ -15,9 +15,6 @@ angular.module('starter.services', [])
           url: 'http://localhost:3000/users'
         })
         .then(function successCallback(response){
-          console.log('http success');
-          console.log(response.data);
-          console.log('currentEmail', currentEmail);
 
           for (var i = 0; i < response.data.length; i++) {
             console.log(response.data[i].email);
@@ -26,7 +23,6 @@ angular.module('starter.services', [])
 
               currentUser = response.data[i];
 
-              console.log('currentUser', currentUser);
               localStorage.setItem('user', JSON.stringify(currentUser));
 
               resolve(currentUser);
@@ -42,7 +38,7 @@ angular.module('starter.services', [])
     },
 
     getUser: function () {
-      console.log('getUser', currentUser);
+
       return currentUser;
     }
   }

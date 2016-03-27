@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ionic'])
 
-.controller('mainCtrl', function($scope, $http, $cordovaSocialSharing, $rootScope, LoggedInFactory, AuthFactory) {
+.controller('mainCtrl', function($scope, $http, $cordovaSocialSharing, $rootScope, LoggedInFactory, AuthFactory, $location) {
     //setting local storage to find user
     $scope.user = JSON.parse(localStorage.getItem("user")) || {};
     //simple authentication after loggin in.
@@ -59,6 +59,7 @@ angular.module('starter.controllers', ['ionic'])
     $rootScope.logout = function () {
       localStorage.setItem('user', JSON.stringify({}));
       $rootScope.loggedin = true;
+      $location.url('/tab/main');
 
     }
 
@@ -66,19 +67,29 @@ angular.module('starter.controllers', ['ionic'])
 
 .controller('favoritesCtrl', function($scope, $http, $rootScope, LoggedInFactory) {
 
-  //call to my server
-  $http({
-    method: 'GET',
-    url: 'http://localhost:3000/favorites'
-  })
-  .then(function successCallback(response){
-    //console.log('favorites', response.data);
+  $scope.user = JSON.parse(localStorage.getItem("user")) || {};
+  console.log('favCtrl storage', $scope.user);
 
-    $scope.favorites = response.data;
+  if (!$scope.user.UserId) {
 
-  }, function errorCallback(error){
-    return error;
-  });
+    $scope.favorites = [];
+
+  } else {
+
+      //call to my server
+      $http({
+        method: 'GET',
+        url: 'http://localhost:3000/favorites'
+      })
+      .then(function successCallback(response){
+        //console.log('favorites', response.data);
+
+        $scope.favorites = response.data;
+
+      }, function errorCallback(error){
+        return error;
+      });
+    }
 
   $scope.deleteFavorite = function (gifId, gifUrl) {
 
