@@ -1,18 +1,19 @@
 angular.module('starter.controllers', ['ionic'])
 
-.controller('mainCtrl', function($scope, $http, $cordovaSocialSharing, $rootScope, LoggedInFactory) {
+.controller('mainCtrl', function($scope, $http, $cordovaSocialSharing, $rootScope, LoggedInFactory, AuthFactory) {
     //setting local storage to find user
     $scope.user = JSON.parse(localStorage.getItem("user")) || {};
     //simple authentication after loggin in.
-    if (!$scope.user.user) {
+    if (!$scope.user.UserId) {
       $rootScope.loggedin = true;
-      LoggedInFactory.setLoggedIn($rootScope.loggedin);
+
     } else {
       $rootScope.loggedin = false;
-      LoggedInFactory.setLoggedIn($rootScope.loggedin);
-    }
 
-    console.log('mainCtrl', $rootScope.loggedin);
+    }
+    console.log('mainCtrl user', !$scope.user.UserId);
+    console.log('mainCtrl loggedin', $rootScope.loggedin);
+    console.log('mainCtrl userdata', $scope.user);
     //call to my server
     $http({
       method: 'GET',
@@ -30,9 +31,10 @@ angular.module('starter.controllers', ['ionic'])
 
 
     //save to favorites
-    $scope.saveFavorite = function (gifId, gifUrl) {
-
-      const data = {gifId: gifId, gifUrl: gifUrl};
+    $scope.saveFavorite = function (gifUrl) {
+      var currentUser = AuthFactory.getUser();
+      //console.log(currentUser);
+      const data = {gifUrl: gifUrl, UserId: currentUser.UserId};
 
       $http.post('http://localhost:3000', data)
               .success(function (data, status, headers) {
@@ -57,14 +59,12 @@ angular.module('starter.controllers', ['ionic'])
     $rootScope.logout = function () {
       localStorage.setItem('user', JSON.stringify({}));
       $rootScope.loggedin = true;
-      console.log('logout works');
+
     }
 
 })//end of controller
 
 .controller('favoritesCtrl', function($scope, $http, $rootScope, LoggedInFactory) {
-  //$rootScope.loggedin = LoggedInFactory.getLoggedIn();
-  console.log('favCtrl', $rootScope.loggedin);
 
   //call to my server
   $http({
@@ -93,7 +93,7 @@ angular.module('starter.controllers', ['ionic'])
 })//end of controller
 
 
-.controller('LoginCtrl', function($scope, $http, $location) {
+.controller('LoginCtrl', function($scope, $http, $location, AuthFactory, $rootScope) {
 
   $scope.SignUp = function () {
     var email = document.getElementById("email").value;
@@ -133,17 +133,18 @@ angular.module('starter.controllers', ['ionic'])
               .success(function (statusData, status, headers) {
                 console.log('success');
 
-                $scope.user = {user: userData.email};
 
-                localStorage.setItem('user', JSON.stringify($scope.user));
+                AuthFactory.setUser(userData.email);
 
                 $location.url('/tab/main');
 
+                //$rootScope.loggedin = false;
               })
               .error(function (statusData, status, header) {
                 localStorage.setItem('user', JSON.stringify({}));
                 console.log(status);
               });
+
   }
 
 });

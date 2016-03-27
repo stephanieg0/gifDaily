@@ -6,7 +6,7 @@
     <!--<iframe ng-src="{{gif.embed_url}}"></iframe> -->
         <div class="socialButtons">
           <button class="button facebookShareButton ion-social-facebook" ng-click="Share(gif.images.original.url)"></button>
-          <button ng-class="{'buttonHidden': loggedin}" class="favoriteButton button icon ion-ios-heart"  ng-click="saveFavorite(gif.id, gif.images.original.url)"></button>
+          <button ng-class="{'buttonHidden': loggedin}" class="favoriteButton button icon ion-ios-heart"  ng-click="saveFavorite(gif.images.original.url)"></button>
         </div>
       </ion-item>
     </ion-list>

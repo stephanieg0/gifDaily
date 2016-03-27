@@ -1,20 +1,41 @@
 angular.module('starter.services', [])
 
-.factory('userEmailFactory', function() {
+.factory('AuthFactory', function($http) {
 
-  var userEmail = "";
+  var currentUser = "";
 
   return {
-    setUserEmail: function(userEmail) {
-      console.log('user', userEmail);
-      return userEmail;
+
+    setUser: function (email) {
+      //call to my server
+      $http({
+        method: 'GET',
+        url: 'http://localhost:3000/users'
+      })
+      .then(function successCallback(response){
+
+        for (var i = 0; i <= response.data.length; i++) {
+
+          if (email === response.data[i].email) {
+
+            currentUser = response.data[i];
+            localStorage.setItem('user', JSON.stringify(currentUser));
+            return currentUser;
+          }
+
+        }
+
+      }, function errorCallback(error){
+        return error;
+      });
+
     },
-    getUserId: function(userEmail) {
-      userEmail = userEmail;
+
+    getUser: function () {
+      console.log('getUser', currentUser);
+      return currentUser;
     }
-
   }
-
 })
 
 .factory('LoggedInFactory', function($rootScope) {
