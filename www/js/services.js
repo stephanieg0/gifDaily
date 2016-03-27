@@ -12,7 +12,7 @@ angular.module('starter.services', [])
         //call to my server
         $http({
           method: 'GET',
-          url: 'http://localhost:3000/users'
+          url: 'https://gifdaily-server.herokuapp.com/users'
         })
         .then(function successCallback(response){
 
