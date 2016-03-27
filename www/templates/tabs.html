@@ -11,12 +11,12 @@ navigation history that also transitions its views in and out.
   </ion-tab>
 
   <!-- Favorites Tab -->
-  <ion-tab title="Favorites" icon-off="ion-ios-heart" icon-on="ion-ios-heart" href="#/tab/favorites">
+  <ion-tab ng-controller="favoritesCtrl" ng-class="{'buttonHidden': loggedin}" title="Favorites" icon-off="ion-ios-heart" icon-on="ion-ios-heart" href="#/tab/favorites">
     <ion-nav-view name="tab-favorites"></ion-nav-view>
   </ion-tab>
-
+ <!--  ng-hide="loggein" class="ng-hide" -->
   <!-- Account Tab -->
-  <ion-tab title="login" icon-off="ion-ios-gear-outline" icon-on="ion-log-in" href="#/tab/login">
+  <ion-tab title="Login" icon-off="ion-ios-gear-outline" icon-on="ion-log-in" href="#/tab/login">
     <ion-nav-view name="tab-login"></ion-nav-view>
   </ion-tab>
 

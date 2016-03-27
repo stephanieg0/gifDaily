@@ -17,15 +17,18 @@ angular.module('starter.services', [])
 
 })
 
-.factory('LoggedInFactory', function() {
+.factory('LoggedInFactory', function($rootScope) {
 
-  var loggedin = true;
+  var loggedin = "";
 
   return {
-    setLoggedIn: function(loggedin) {
-      loggedin = loggedin;
+    setLoggedIn: function(value) {
+      loggedin = value;
+      return loggedin;
+      console.log('factory', loggedin);
     },
     getLoggedIn: function() {
+      console.log('factory get', loggedin);
       return loggedin;
     }
 

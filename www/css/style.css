@@ -3,9 +3,14 @@
   background-color: #4A65A0;
   color: white;
   font-size: 25px;
-  display: block;
 }
-
 .buttonHidden {
   visibility: hidden;
+}
+.socialButtons {
+  margin: 0 auto;
+}
+.gifs {
+  display: block;
+  margin: 0 auto;
 }

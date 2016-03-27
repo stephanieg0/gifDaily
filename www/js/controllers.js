@@ -1,15 +1,18 @@
 angular.module('starter.controllers', ['ionic'])
 
-.controller('mainCtrl', function($scope, $http, $cordovaSocialSharing) {
+.controller('mainCtrl', function($scope, $http, $cordovaSocialSharing, $rootScope, LoggedInFactory) {
     //setting local storage to find user
     $scope.user = JSON.parse(localStorage.getItem("user")) || {};
     //simple authentication after loggin in.
     if (!$scope.user.user) {
-      $scope.loggedin = true;
+      $rootScope.loggedin = true;
+      LoggedInFactory.setLoggedIn($rootScope.loggedin);
     } else {
-      $scope.loggedin = false;
+      $rootScope.loggedin = false;
+      LoggedInFactory.setLoggedIn($rootScope.loggedin);
     }
 
+    console.log('mainCtrl', $rootScope.loggedin);
     //call to my server
     $http({
       method: 'GET',
@@ -31,8 +34,6 @@ angular.module('starter.controllers', ['ionic'])
 
       const data = {gifId: gifId, gifUrl: gifUrl};
 
-      console.log(data);
-
       $http.post('http://localhost:3000', data)
               .success(function (data, status, headers) {
                 console.log(status);
@@ -53,19 +54,25 @@ angular.module('starter.controllers', ['ionic'])
       });
     }
 
+    $rootScope.logout = function () {
+      localStorage.setItem('user', JSON.stringify({}));
+      $rootScope.loggedin = true;
+      console.log('logout works');
+    }
 
 })//end of controller
 
-.controller('favoritesCtrl', function($scope, $http) {
+.controller('favoritesCtrl', function($scope, $http, $rootScope, LoggedInFactory) {
+  //$rootScope.loggedin = LoggedInFactory.getLoggedIn();
+  console.log('favCtrl', $rootScope.loggedin);
 
-  console.log('favorites controller is working');
   //call to my server
   $http({
     method: 'GET',
     url: 'http://localhost:3000/favorites'
   })
   .then(function successCallback(response){
-    console.log('favorites', response.data);
+    //console.log('favorites', response.data);
 
     $scope.favorites = response.data;
 
@@ -137,7 +144,6 @@ angular.module('starter.controllers', ['ionic'])
                 localStorage.setItem('user', JSON.stringify({}));
                 console.log(status);
               });
-
   }
 
 });
