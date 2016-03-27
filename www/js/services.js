@@ -1,34 +1,44 @@
 angular.module('starter.services', [])
 
-.factory('AuthFactory', function($http) {
+.factory('AuthFactory', function($http, $q) {
 
   var currentUser = "";
 
   return {
 
-    setUser: function (email) {
-      //call to my server
-      $http({
-        method: 'GET',
-        url: 'http://localhost:3000/users'
-      })
-      .then(function successCallback(response){
+    setUser: function (userData) {
+      var currentEmail = JSON.stringify(userData.email);
+      return $q(function (resolve, reject) {
+        //call to my server
+        $http({
+          method: 'GET',
+          url: 'http://localhost:3000/users'
+        })
+        .then(function successCallback(response){
+          console.log('http success');
+          console.log(response.data);
+          console.log('currentEmail', currentEmail);
 
-        for (var i = 0; i <= response.data.length; i++) {
+          for (var i = 0; i < response.data.length; i++) {
+            console.log(response.data[i].email);
 
-          if (email === response.data[i].email) {
+            if (currentEmail = response.data[i].email) {
 
-            currentUser = response.data[i];
-            localStorage.setItem('user', JSON.stringify(currentUser));
-            return currentUser;
+              currentUser = response.data[i];
+
+              console.log('currentUser', currentUser);
+              localStorage.setItem('user', JSON.stringify(currentUser));
+
+              resolve(currentUser);
+            }
+
           }
 
-        }
+        }, function errorCallback(error){
+          reject(error);
+        });
 
-      }, function errorCallback(error){
-        return error;
-      });
-
+      })//end of promise fn
     },
 
     getUser: function () {

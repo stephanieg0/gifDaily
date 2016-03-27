@@ -134,9 +134,11 @@ angular.module('starter.controllers', ['ionic'])
                 console.log('success');
 
 
-                AuthFactory.setUser(userData.email);
+                AuthFactory.setUser(userData).then(function () {
+                  console.log('promise kept');
+                  $location.url('/tab/main');
+                });
 
-                $location.url('/tab/main');
 
                 //$rootScope.loggedin = false;
               })
