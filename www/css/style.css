@@ -14,3 +14,12 @@
   display: block;
   margin: 0 auto;
 }
+.smsShareButton {
+  background-color: #14B901;
+  color: white;
+  font-size: 25px;
+}
+.favoriteButton {
+  color: white;
+  background-color: red;
+}
