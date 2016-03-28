@@ -34,7 +34,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/tabs.html',
+    controller: 'tabsCtrl',
+    reload: true
   })
 
   .state('tab.main', {
@@ -42,7 +44,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'tab-main': {
         templateUrl: 'templates/tab-main.html',
-        controller: 'mainCtrl'
+        controller: 'mainCtrl',
+        reload: true
       }
     }
   })
@@ -52,7 +55,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       views: {
         'tab-favorites': {
           templateUrl: 'templates/tab-favorites.html',
-          controller: 'favoritesCtrl'
+          controller: 'favoritesCtrl',
+          reload: true
         }
       }
     })
@@ -62,7 +66,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        reload: true
       }
     }
   });
