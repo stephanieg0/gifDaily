@@ -7,7 +7,8 @@ angular.module('starter.services', [])
   return {
 
     setUser: function (userData) {
-      var currentEmail = JSON.stringify(userData.email);
+      var currentEmail = userData.email;
+
       return $q(function (resolve, reject) {
         //call to my server
         $http({
@@ -18,13 +19,12 @@ angular.module('starter.services', [])
 
           for (var i = 0; i < response.data.length; i++) {
 
-
-            if (currentEmail = response.data[i].email) {
+            if (currentEmail === response.data[i].email) {
 
               currentUser = response.data[i];
 
               localStorage.setItem('user', JSON.stringify(currentUser));
-              console.log('currentUser', currentUser);
+
               resolve(currentUser);
             }
 

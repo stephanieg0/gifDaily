@@ -129,7 +129,11 @@ angular.module('starter.controllers', ['ionic'])
 
 
 .controller('LoginCtrl', function($scope, $http, $location, AuthFactory, $rootScope) {
+  $scope.user = JSON.parse(localStorage.getItem("user")) || {};
 
+  if ($scope.user.UserId) {
+    console.log('$scope.user.UserId Login', $scope.user);
+  }
   $scope.SignUp = function () {
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
@@ -170,7 +174,7 @@ angular.module('starter.controllers', ['ionic'])
               .success(function (statusData, status, headers) {
                 console.log('success');
 
-
+                console.log('userData.email', userData.email);
                 AuthFactory.setUser(userData).then(function () {
 
                   $location.url('/tab/main');
