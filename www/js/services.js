@@ -17,14 +17,14 @@ angular.module('starter.services', [])
         .then(function successCallback(response){
 
           for (var i = 0; i < response.data.length; i++) {
-            console.log(response.data[i].email);
+
 
             if (currentEmail = response.data[i].email) {
 
               currentUser = response.data[i];
 
               localStorage.setItem('user', JSON.stringify(currentUser));
-
+              console.log('currentUser', currentUser);
               resolve(currentUser);
             }
 
@@ -52,10 +52,10 @@ angular.module('starter.services', [])
     setLoggedIn: function(value) {
       loggedin = value;
       return loggedin;
-      console.log('factory', loggedin);
+
     },
     getLoggedIn: function() {
-      console.log('factory get', loggedin);
+
       return loggedin;
     }
 

@@ -11,7 +11,7 @@ angular.module('starter.controllers', ['ionic'])
       $rootScope.loggedin = false;
 
     }
-    console.log('$rootScope.loggedin MAIN', $rootScope.loggedin);
+
     //call to my server
     $http({
       method: 'GET',
@@ -79,12 +79,11 @@ angular.module('starter.controllers', ['ionic'])
 .controller('favoritesCtrl', function($scope, $http, $rootScope, LoggedInFactory) {
 
   $scope.user = JSON.parse(localStorage.getItem("user")) || {};
-  console.log('favCtrl storage', $scope.user);
 
   if (!$scope.user.UserId) {
 
     $scope.favorites = [];
-
+    $scope.message = "Log in to add favorites";
   } else {
 
       //call to my server
@@ -97,10 +96,24 @@ angular.module('starter.controllers', ['ionic'])
 
         $scope.favorites = response.data;
 
+        for (var i= 0; i < $scope.favorites.length; i++) {
+
+          if ($scope.favorites[i].UserId === $scope.user.UserId) {
+
+            $scope.message = "";
+          } else {
+            $scope.message = "No favorites added";
+          }
+
+        }
       }, function errorCallback(error){
         return error;
       });
-    }
+
+
+
+  }
+
 
   $scope.deleteFavorite = function (gifId, gifUrl) {
 
@@ -129,13 +142,15 @@ angular.module('starter.controllers', ['ionic'])
     $http.post('https://gifdaily-server.herokuapp.com/signUp', userData)
               .success(function (statusData, status, headers) {
                 console.log('success');
-                $scope.user = {user: userData.email};
 
-                localStorage.setItem('user', JSON.stringify($scope.user));
+                AuthFactory.setUser(userData).then(function () {
 
-                $location.url('/tab/main');
+                  $location.url('/tab/main');
+                });
+
               })
               .error(function (statusData, status, header) {
+                console.log(status);
                 localStorage.setItem('user', JSON.stringify({}));
 
               });
@@ -165,6 +180,7 @@ angular.module('starter.controllers', ['ionic'])
                 //$rootScope.loggedin = false;
               })
               .error(function (statusData, status, header) {
+                console.log(status);
                 localStorage.setItem('user', JSON.stringify({}));
 
               });
@@ -184,7 +200,6 @@ angular.module('starter.controllers', ['ionic'])
       $rootScope.loggedin = false;
 
     }
-    console.log('$scope.user TABS', $scope.user);
-    console.log('$rootScope.loggedin TABS', $rootScope.loggedin);
+
 });
 
