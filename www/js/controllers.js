@@ -1,15 +1,17 @@
 angular.module('starter.controllers', ['ionic'])
 
-.controller('mainCtrl', function($scope, $http, $cordovaSocialSharing, $rootScope, LoggedInFactory, AuthFactory, $location) {
+.controller('mainCtrl', function($scope, $http, $cordovaSocialSharing, $rootScope, AuthFactory, $location) {
     //setting local storage to find user
     $scope.user = JSON.parse(localStorage.getItem("user")) || {};
     //simple authentication after loggin in.
     if (!$scope.user.UserId) {
       $rootScope.loggedin = true;
-
+      $rootScope.loggedout = false;
+      $rootScope.YouAreLoggedIn = "";
     } else {
       $rootScope.loggedin = false;
-
+      $rootScope.loggedout = true;
+      $rootScope.YouAreLoggedIn = "You are looged in";
     }
 
     //call to my server
@@ -76,7 +78,7 @@ angular.module('starter.controllers', ['ionic'])
 
 })//end of controller
 
-.controller('favoritesCtrl', function($scope, $http, $rootScope, LoggedInFactory) {
+.controller('favoritesCtrl', function($scope, $http, $rootScope) {
 
   $scope.user = JSON.parse(localStorage.getItem("user")) || {};
 
@@ -98,10 +100,13 @@ angular.module('starter.controllers', ['ionic'])
 
         for (var i= 0; i < $scope.favorites.length; i++) {
 
-          if ($scope.favorites[i].UserId === $scope.user.UserId) {
 
+          if ($scope.favorites[i].UserId === $scope.user.UserId) {
+            console.log('true');
             $scope.message = "";
+
           } else {
+
             $scope.message = "No favorites added";
           }
 
@@ -121,19 +126,20 @@ angular.module('starter.controllers', ['ionic'])
 
     $http.delete('https://gifdaily-server.herokuapp.com/favorites/' + gifId)
         .success(function (data, status, headers) {
+          console.log(status);
+          //take out the the gif of the scope favorites
+          console.log('$scope.favorites in delete fn', $scope.favorites);
         })
         .error(function (data, status, header) {
+          console.log(status);
         });
   }
 })//end of controller
 
 
 .controller('LoginCtrl', function($scope, $http, $location, AuthFactory, $rootScope) {
-  $scope.user = JSON.parse(localStorage.getItem("user")) || {};
 
-  if ($scope.user.UserId) {
-    console.log('$scope.user.UserId Login', $scope.user);
-  }
+
   $scope.SignUp = function () {
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
@@ -149,7 +155,11 @@ angular.module('starter.controllers', ['ionic'])
 
                 AuthFactory.setUser(userData).then(function () {
 
+                  document.getElementById("email").value = "";
+                  document.getElementById("password").value = "";
+
                   $location.url('/tab/main');
+
                 });
 
               })
@@ -174,10 +184,14 @@ angular.module('starter.controllers', ['ionic'])
               .success(function (statusData, status, headers) {
                 console.log('success');
 
-                console.log('userData.email', userData.email);
+
                 AuthFactory.setUser(userData).then(function () {
 
+                  document.getElementById("email").value = "";
+                  document.getElementById("password").value = "";
+
                   $location.url('/tab/main');
+
                 });
 
 
