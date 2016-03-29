@@ -40,7 +40,10 @@
 .signUp-button {
   font-size: 20px;
 }
-
+.favorites-message {
+  color: gray;
+  text-align: center;
+}
 
 
 

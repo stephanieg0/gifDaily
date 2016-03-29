@@ -1,7 +1,7 @@
 <ion-view view-title="Favorites" cache-view="false">
   <ion-content class="padding" overflow-scroll="true">
     <ion-list>
-      <h2>{{message}}</h2>
+      <h2 class="favorites-message">{{message}}</h2>
       <ion-item ng-repeat="favorite in favorites | filter: {UserId: user.UserId}">
         <div ng-model="favorites">
           <div id="{{favorite.UserId}}">
