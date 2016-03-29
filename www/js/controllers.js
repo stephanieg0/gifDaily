@@ -15,23 +15,33 @@ angular.module('starter.controllers', ['ionic'])
     }
 
     //call to my server
-    $http({
-      method: 'GET',
-      url: 'https://gifdaily-server.herokuapp.com'
-      //https://gifdaily-server.herokuapp.com
-      //dev> https://localhost:3000
-    })
-    .then(function successCallback(response){
+    //load scroll
+    $scope.loadMore = function () {
+      $scope.giphys = [];
+      console.log('loadMore is working');
+      $http({
+        method: 'GET',
+        url: 'https://gifdaily-server.herokuapp.com'
+        //https://gifdaily-server.herokuapp.com
+        //dev> https://localhost:3000
+      })
+      .then(function successCallback(response){
 
-      $scope.giphys = response.data.data;
+        $scope.giphys = response.data.data;
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      }, function errorCallback(error){
+        return error;
+      });
+    }
 
-    }, function errorCallback(error){
-      return error;
+    $scope.$on('$stateChangeSuccess', function() {
+      $scope.loadMore();
     });
 
 
     //save to favorites
     $scope.saveFavorite = function (gifUrl) {
+      console.log('fav works');
       var currentUser = AuthFactory.getUser();
 
       const data = {gifUrl: gifUrl, UserId: currentUser.UserId};
@@ -100,6 +110,8 @@ angular.module('starter.controllers', ['ionic'])
 
         for (var i= 0; i < $scope.favorites.length; i++) {
 
+          console.log('favorite data', $scope.favorites[i]);
+          console.log('userData', $scope.user.UserId);
 
           if ($scope.favorites[i].UserId === $scope.user.UserId) {
             console.log('true');
@@ -139,6 +151,7 @@ angular.module('starter.controllers', ['ionic'])
 
 .controller('LoginCtrl', function($scope, $http, $location, AuthFactory, $rootScope) {
 
+  $scope.UserError = "";
 
   $scope.SignUp = function () {
     var email = document.getElementById("email").value;
@@ -152,6 +165,7 @@ angular.module('starter.controllers', ['ionic'])
     $http.post('https://gifdaily-server.herokuapp.com/signUp', userData)
               .success(function (statusData, status, headers) {
                 console.log('success');
+                $scope.UserError = "";
 
                 AuthFactory.setUser(userData).then(function () {
 
@@ -166,7 +180,7 @@ angular.module('starter.controllers', ['ionic'])
               .error(function (statusData, status, header) {
                 console.log(status);
                 localStorage.setItem('user', JSON.stringify({}));
-
+                $scope.UserError = statusData;
               });
 
   }
@@ -183,7 +197,7 @@ angular.module('starter.controllers', ['ionic'])
     $http.post('https://gifdaily-server.herokuapp.com/login', userData)
               .success(function (statusData, status, headers) {
                 console.log('success');
-
+                $scope.UserError = "";
 
                 AuthFactory.setUser(userData).then(function () {
 
@@ -200,7 +214,7 @@ angular.module('starter.controllers', ['ionic'])
               .error(function (statusData, status, header) {
                 console.log(status);
                 localStorage.setItem('user', JSON.stringify({}));
-
+                $scope.UserError = statusData;
               });
 
   }

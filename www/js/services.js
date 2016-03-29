@@ -16,7 +16,7 @@ angular.module('starter.services', [])
           url: 'https://gifdaily-server.herokuapp.com/users'
         })
         .then(function successCallback(response){
-
+          console.log('users', response);
           for (var i = 0; i < response.data.length; i++) {
 
             if (currentEmail === response.data[i].email) {

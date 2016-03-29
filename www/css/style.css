@@ -27,3 +27,21 @@
 .deleteFavoriteButton {
 
 }
+.user-error {
+  text-align: center;
+  color: red;
+  font-size: 16px;
+}
+.login-button {
+  text-align: center;
+  color: blue;
+  font-size: 20px;
+}
+.signUp-button {
+  font-size: 20px;
+}
+
+
+
+
+
