@@ -20,6 +20,16 @@
   color: white;
   font-size: 25px;
 }
+.emailShareButton {
+  background-color: #AF0000;
+  color: white;
+  font-size: 25px;
+}
+.twitterShareButton {
+  background-color: #00B6F9;
+  color: white;
+  font-size: 25px;
+}
 .favoriteButton {
   color: white;
   background-color: red;

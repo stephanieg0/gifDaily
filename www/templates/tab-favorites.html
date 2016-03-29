@@ -5,8 +5,14 @@
       <ion-item ng-repeat="favorite in favorites | filter: {UserId: user.UserId}">
         <div ng-model="favorites">
           <div id="{{favorite.UserId}}">
-          <button class="button deleteFavoriteButton icon ion-close-circled" ng-click="deleteFavorite(favorite.FavoriteId, favorite.Url)"></button>
-          <img id="{{favorite.FavoriteId}}" class="gifs" height="200" ng-src="{{favorite.Url}}">
+            <button class="button deleteFavoriteButton icon ion-close-circled" ng-click="deleteFavorite(favorite.FavoriteId, favorite.Url)"></button>
+            <img id="{{favorite.FavoriteId}}" class="gifs" height="200" ng-src="{{favorite.Url}}">
+          </div>
+          <div class="socialButtons">
+            <button class="button facebookShareButton ion-social-facebook" ng-click="ShareFacebook(gif.images.original.url)"></button>
+            <button class="button smsShareButton ion-android-textsms" ng-click="ShareSMS(gif.images.original.url)"></button>
+            <button class="button emailShareButton ion-ios-email" ng-click="ShareEmail(gif.images.original.url)"></button>
+            <button class="button twitterShareButton ion-social-twitter" ng-click="ShareTwitter(gif.images.original.url)"></button>
         </div>
         </div>
       </ion-item>

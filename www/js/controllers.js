@@ -57,7 +57,7 @@ angular.module('starter.controllers', ['ionic'])
               });
     }//end of fn
 
-    $scope.Share = function (gifUrl) {
+    $scope.ShareFacebook = function (gifUrl) {
 
       $cordovaSocialSharing
       .shareViaFacebook(null, null, gifUrl)
@@ -76,9 +76,33 @@ angular.module('starter.controllers', ['ionic'])
       .then(function(result) {
         // Success!
       }, function(err) {
+          alert(err);
         // An error occurred. Show a message to the user
       });
 
+    }
+
+    $scope.ShareEmail = function (gifUrl) {
+      $cordovaSocialSharing
+      .shareViaEmail(null, null, [], [], [], gifUrl)
+      .then(function(result) {
+        // Success!
+      }, function(err) {
+          alert(err);
+        // An error occurred. Show a message to the user
+      });
+
+    }
+
+    $scope.ShareTwitter = function (gifUrl) {
+      $cordovaSocialSharing
+      .shareViaTwitter(null, null, link)
+      .then(function(result) {
+        // Success!
+      }, function(err) {
+          alert(err);
+        // An error occurred. Show a message to the user
+      });
     }
 
     $rootScope.logout = function () {

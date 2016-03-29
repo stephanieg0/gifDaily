@@ -5,8 +5,10 @@
         <img height="200" class="gifs" ng-src="{{gif.images.original.url}}">
 
         <div class="socialButtons">
-          <button class="button facebookShareButton ion-social-facebook" ng-click="Share(gif.images.original.url)"></button>
+          <button class="button facebookShareButton ion-social-facebook" ng-click="ShareFacebook(gif.images.original.url)"></button>
           <button class="button smsShareButton ion-android-textsms" ng-click="ShareSMS(gif.images.original.url)"></button>
+          <button class="button emailShareButton ion-ios-email" ng-click="ShareEmail(gif.images.original.url)"></button>
+          <button class="button twitterShareButton ion-social-twitter" ng-click="ShareTwitter(gif.images.original.url)"></button>
           <button ng-class="{'buttonHidden': loggedin}" class="favoriteButton button icon ion-ios-heart"  ng-click="saveFavorite(gif.images.original.url)"></button>
         </div>
       </ion-item>
