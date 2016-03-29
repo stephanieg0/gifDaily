@@ -1,7 +1,7 @@
 <ion-view view-title="Home" cache-view="false">
   <ion-content class="padding" overflow-scroll="true">
     <ion-list>
-      <ion-item ng-repeat="gif in giphys | limitTo: 5">
+      <ion-item ng-repeat="gif in giphys | limitTo: 10">
         <img height="200" class="gifs" ng-src="{{gif.images.original.url}}">
 
         <div class="socialButtons">
