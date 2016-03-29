@@ -96,7 +96,7 @@ angular.module('starter.controllers', ['ionic'])
 
     $scope.ShareTwitter = function (gifUrl) {
       $cordovaSocialSharing
-      .shareViaTwitter(null, null, link)
+      .shareViaTwitter(null, null, gifUrl)
       .then(function(result) {
         // Success!
       }, function(err) {
