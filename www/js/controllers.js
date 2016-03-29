@@ -18,7 +18,9 @@ angular.module('starter.controllers', ['ionic'])
     //load scroll
     $scope.loadMore = function () {
       $scope.giphys = [];
+
       console.log('loadMore is working');
+
       $http({
         method: 'GET',
         url: 'https://gifdaily-server.herokuapp.com'
