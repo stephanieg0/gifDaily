@@ -2,7 +2,7 @@
   <ion-content class="padding" overflow-scroll="true">
     <ion-list>
       <ion-item ng-repeat="gif in giphys | limitTo: 10">
-        <img height="200" class="gifs" ng-src="{{gif.images.original.url}}">
+        <img width="300" class="gifs" ng-src="{{gif.images.original.url}}">
 
         <div class="socialButtons">
           <button class="button facebookShareButton ion-social-facebook" ng-click="ShareFacebook(gif.images.original.url)"></button>

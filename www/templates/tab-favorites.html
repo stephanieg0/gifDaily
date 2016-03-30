@@ -6,7 +6,7 @@
         <div ng-model="favorites">
           <div id="{{favorite.UserId}}">
             <button class="button deleteFavoriteButton icon ion-close-circled" ng-click="deleteFavorite(favorite.FavoriteId, favorite.Url)"></button>
-            <img id="{{favorite.FavoriteId}}" class="gifs" height="200" ng-src="{{favorite.Url}}">
+            <img id="{{favorite.FavoriteId}}" class="gifs" width="300" ng-src="{{favorite.Url}}">
           </div>
           <div class="socialButtons">
             <button class="button facebookShareButton ion-social-facebook" ng-click="ShareFacebook(gif.images.original.url)"></button>
