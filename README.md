@@ -1,23 +1,27 @@
-Ionic App Base
+gifDaily mobile app
 =====================
+gifDaily is a mobile app to view the trending gifs of the day and share them on social media.
 
-A starting project for Ionic that optionally supports using custom SCSS.
+This application was made using the ionic framework and cordova plugins.
+
+Custom build server with Node.js, https://github.com/stephanieg0/gifDaily-server and giphy's api https://github.com/Giphy/GiphyAPI
 
 ## Using this project
 
-We recommend using the [Ionic CLI](https://github.com/driftyco/ionic-cli) to create new Ionic projects that are based on this project but use a ready-made starter template.
+* Fork Repository
+* $ npm install -g cordova ionic
+* $ git clone https://github.com/stephanieg0/gifDaily/ .....git
+* $ npm init
+* $ bower init
+* $ ionic build ios
+* $ ionic build android 
+* $ ionic serve or ionic emulate ios
 
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
+To deploy to your phone $ionic run android or ionic run ios
 
-```bash
-$ npm install -g ionic
-```
+Make sure to have adroid SDK tools installed; find more here: http://developer.android.com/sdk/index.html
 
-Then run:
 
-```bash
-$ ionic start myProject tabs
-```
 
 More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/driftyco/ionic-cli) repo.
 
