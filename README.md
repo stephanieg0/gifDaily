@@ -8,14 +8,14 @@ Custom built server with Node.js https://github.com/stephanieg0/gifDaily-server 
 
 ## Using this project
 
-Fork Repository
-$ npm install -g cordova ionic
-$ git clone https://github.com/stephanieg0/gifDaily/ .....git
-$ npm init
-$ bower init
-$ ionic build ios
-$ ionic build android 
-$ ionic serve or ionic emulate ios
+```Fork Repository
+```$ npm install -g cordova ionic
+```$ git clone https://github.com/stephanieg0/gifDaily/ .....git
+```$ npm init
+```$ bower init
+```$ ionic build ios
+```$ ionic build android 
+```$ ionic serve or ionic emulate ios
 
 To deploy to your phone $ionic run android or ionic run ios
 
