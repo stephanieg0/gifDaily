@@ -19,8 +19,6 @@ angular.module('starter.controllers', ['ionic'])
     $scope.loadMore = function () {
       $scope.giphys = [];
 
-      console.log('loadMore is working');
-
       $http({
         method: 'GET',
         url: 'https://gifdaily-server.herokuapp.com'
@@ -43,7 +41,7 @@ angular.module('starter.controllers', ['ionic'])
 
     //save to favorites
     $scope.saveFavorite = function (gifUrl) {
-      console.log('fav works');
+
       var currentUser = AuthFactory.getUser();
 
       const data = {gifUrl: gifUrl, UserId: currentUser.UserId};
@@ -135,9 +133,6 @@ angular.module('starter.controllers', ['ionic'])
         $scope.favorites = response.data;
 
         for (var i= 0; i < $scope.favorites.length; i++) {
-
-          console.log('favorite data', $scope.favorites[i]);
-          console.log('userData', $scope.user.UserId);
 
           if ($scope.favorites[i].UserId === $scope.user.UserId) {
             console.log('true');

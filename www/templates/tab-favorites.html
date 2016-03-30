@@ -9,10 +9,10 @@
             <img id="{{favorite.FavoriteId}}" class="gifs" width="300" ng-src="{{favorite.Url}}">
           </div>
           <div class="socialButtons">
-            <button class="button facebookShareButton ion-social-facebook" ng-click="ShareFacebook(gif.images.original.url)"></button>
-            <button class="button smsShareButton ion-android-textsms" ng-click="ShareSMS(gif.images.original.url)"></button>
-            <button class="button emailShareButton ion-ios-email" ng-click="ShareEmail(gif.images.original.url)"></button>
-            <button class="button twitterShareButton ion-social-twitter" ng-click="ShareTwitter(gif.images.original.url)"></button>
+            <button class="button facebookShareButton ion-social-facebook" ng-click="ShareFacebook(favorite.Url)"></button>
+            <button class="button smsShareButton ion-android-textsms" ng-click="ShareSMS(favorite.Url)"></button>
+            <button class="button emailShareButton ion-ios-email" ng-click="ShareEmail(favorite.Url)"></button>
+            <button class="button twitterShareButton ion-social-twitter" ng-click="ShareTwitter(favorite.Url)"></button>
         </div>
         </div>
       </ion-item>
