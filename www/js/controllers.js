@@ -114,7 +114,7 @@ angular.module('starter.controllers', ['ionic'])
 
 })//end of controller
 
-.controller('favoritesCtrl', function($scope, $http, $rootScope) {
+.controller('favoritesCtrl', function($scope, $http, $rootScope, $cordovaSocialSharing) {
 
   $scope.user = JSON.parse(localStorage.getItem("user")) || {};
 
@@ -152,11 +152,56 @@ angular.module('starter.controllers', ['ionic'])
       }, function errorCallback(error){
         return error;
       });
-
-
-
   }
 
+
+ $scope.ShareFacebook = function (gifUrl) {
+
+      $cordovaSocialSharing
+      .shareViaFacebook(null, null, gifUrl)
+      .then(function(result) {
+
+      }, function(err) {
+          alert(err);
+        // An error occurred. Show a message to the user
+      });
+    }
+
+    $scope.ShareSMS = function (gifUrl, number) {
+
+      $cordovaSocialSharing
+      .shareViaSMS(gifUrl, number)
+      .then(function(result) {
+        // Success!
+      }, function(err) {
+          alert(err);
+        // An error occurred. Show a message to the user
+      });
+
+    }
+
+    $scope.ShareEmail = function (gifUrl) {
+      $cordovaSocialSharing
+      .shareViaEmail(null, null, [], [], [], gifUrl)
+      .then(function(result) {
+        // Success!
+      }, function(err) {
+          alert(err);
+        // An error occurred. Show a message to the user
+      });
+
+    }
+
+    $scope.ShareTwitter = function (gifUrl) {
+      $cordovaSocialSharing
+      .shareViaTwitter(null, null, gifUrl)
+      .then(function(result) {
+        // Success!
+      }, function(err) {
+          alert(err);
+        // An error occurred. Show a message to the user
+      });
+    }
 
   $scope.deleteFavorite = function (gifId, gifUrl) {
 
