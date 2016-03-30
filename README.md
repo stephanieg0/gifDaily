@@ -4,18 +4,18 @@ gifDaily is a mobile app to view the trending gifs of the day and share them on 
 
 This application was made using the ionic framework and cordova plugins.
 
-Custom build server with Node.js, https://github.com/stephanieg0/gifDaily-server and giphy's api https://github.com/Giphy/GiphyAPI
+Custom built server with Node.js https://github.com/stephanieg0/gifDaily-server and giphy's api https://github.com/Giphy/GiphyAPI
 
 ## Using this project
 
-* Fork Repository
-* $ npm install -g cordova ionic
-* $ git clone https://github.com/stephanieg0/gifDaily/ .....git
-* $ npm init
-* $ bower init
-* $ ionic build ios
-* $ ionic build android 
-* $ ionic serve or ionic emulate ios
+Fork Repository
+$ npm install -g cordova ionic
+$ git clone https://github.com/stephanieg0/gifDaily/ .....git
+$ npm init
+$ bower init
+$ ionic build ios
+$ ionic build android 
+$ ionic serve or ionic emulate ios
 
 To deploy to your phone $ionic run android or ionic run ios
 
