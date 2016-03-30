@@ -10,7 +10,7 @@ Custom built server with Node.js https://github.com/stephanieg0/gifDaily-server 
 
 * ```Fork Repository```
 * ```$ npm install -g cordova ionic```
-* ```$ git clone https://github.com/stephanieg0/gifDaily/ .....git```
+* ```$ git clone https://github.com/.../gifDaily.git```
 * ```$ npm init```
 * ```$ bower init```
 * ```$ ionic build ios```
